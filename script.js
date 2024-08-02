@@ -33,3 +33,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+document.getElementById('signup-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    let email = document.getElementById('email').value;
+    let cpf = document.getElementById('cpf').value;
+    let message = '';
+
+    if (!validateEmail(email)) {
+        message += 'E-mail inválido.<br>';
+    }
+
+    if (!validateCPF(cpf)) {
+        message += 'CPF inválido.<br>';
+    }
+
+    document.getElementById('message').innerHTML = message || 'Cadastro realizado com sucesso!';
+});
+
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+function validateCPF(cpf) {
+    // Implementar validação de CPF aqui
+    return true; // Apenas para exemplo
+}
